@@ -7,15 +7,21 @@
 #   z = mergeAndCountSplit(a,n)
 # return x+y+z
 
-def sortAndCount(a, n):
+def sortAndCount(a):
+  n = len(a)
+  left = a[:n//2]
+  right = a[n//2:]
   if(n==1):
     return 0;
   else:
-    x = sortAndCount(a[:n/2], n/2)
-    y = sortAndCount(a[n/2:], n/2)
-    z = mergeAndCountSplit(a,n)
+    x = sortAndCount(left)
+    y = sortAndCount(right)
+    z = mergeAndCountSplit(left, right)
     return x+y+z;
 
 
-def mergeAndCountSplit:
+def mergeAndCountSplit(left, right):
   return 0;
+
+a = [6,5,4,3,2,1]
+print(sortAndCount(a))
