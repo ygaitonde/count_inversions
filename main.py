@@ -6,8 +6,6 @@
 #   y = sortAndCount(A[n/2:], n/2)
 #   z = mergeAndCountSplit(a,n)
 # return x+y+z
-invCount = 0
-
 def sortAndCount(a):
   n = len(a)
   left = a[:n//2]
@@ -22,14 +20,33 @@ def sortAndCount(a):
 
 
 def mergeAndCountSplit(a, left, right):
-  #add logic if left != right
-  count, i, j = 0;
-  while(i<len(left) or j<len(right)):
-    if(left[i] > right[i]):
-      a[i] = left[i]
-    else: 
-      a[i] = right[i]
-    return count
+  #add logic if left len != right len
+  count = 0
+  i = 0
+  j = 0
+  k=0
+  while(i<len(left) and j<len(right)):
+    if(left[i] < right[j]):
+      a[k] = left[i]
+      i+=1
+      k+=1
+    if(left[i] > right[j]): 
+      a[k] = right[j]
+      count+=len(left)-i
+      j+=1
+      k+=1
+  if(a[k-1] == left[i-1]):
+    while(k<len(a)):
+      a[k] = right[j]
+      k+=1
+      j+=1
+  if(a[k-1] == right[j-1]):
+    while(k<len(a)):
+      a[k] = left[i]
+      k+=1
+      i+=1
+  return count
 
-a = [6,5,4,3,2,1]
-sortAndCount(a)
+a = [8,7,6,5,4,3,2,1]
+print(sortAndCount(a))
+print(a)
